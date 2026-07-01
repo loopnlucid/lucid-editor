@@ -87,6 +87,14 @@ No mandatory bundler or large framework is required for the first working versio
 - `docs/CHANGELOG.md` records meaningful project changes
 - Git history tracks implementation progress inside this repository
 
+## License
+
+Lucid Editor is licensed under the **MIT License**. See `LICENSE`.
+
+The MIT license applies to the editor repository itself.
+It does **not** automatically claim ownership over games, levels, or assets created with the editor.
+If Lucid Editor later ships export templates, runtime code, or bundled assets, those parts may define additional terms for the material they provide.
+
 ## Contributing
 
 This project is still being shaped, but contributions should follow the documented direction.
