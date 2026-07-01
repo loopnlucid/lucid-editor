@@ -12,6 +12,10 @@ Before making substantial changes, read:
 4. `docs/IMPLEMENTATION-ROADMAP.md`
 5. the relevant file under `docs/foundations/`
 
+Also read:
+
+- `CODE_OF_CONDUCT.md`
+
 ## Core Rule
 
 The documentation is the source of truth.
@@ -42,3 +46,4 @@ Even if collaboration is currently small, changes should be easy to review:
 - keep changes focused
 - explain why the change exists
 - mention any documentation files updated alongside the code
+- respect the pull request template where one exists

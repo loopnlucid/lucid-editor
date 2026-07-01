@@ -104,5 +104,7 @@ Please read:
 - `AGENTS.md`
 - `docs/AGENTS.md`
 - `docs/README.md`
+- `CONTRIBUTING.md`
+- `CODE_OF_CONDUCT.md`
 
 before making substantial changes.

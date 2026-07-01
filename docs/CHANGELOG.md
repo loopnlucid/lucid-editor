@@ -3,6 +3,8 @@
 ## 2026-07-01
 
 ### Added
+- Neue `.github/`-Grundstruktur fuer Open-Source-Zusammenarbeit: Bug-Template, Feature-Template, Pull-Request-Template und Issue-Konfiguration.
+- Neue `CODE_OF_CONDUCT.md` auf Basis des Contributor Covenant als verbindlicher Community-Rahmen fuer das Repository.
 - Neue `LICENSE`-Datei unter MIT, damit das Editor-Repository jetzt eine klare Open-Source-Lizenz besitzt.
 - Neue oeffentliche `README.md` auf Repository-Ebene mit Projektbeschreibung, Zielbild, Tech-Richtung und Einstieg in die Doku.
 - Neue `CONTRIBUTING.md` mit schlanken Beitragsregeln, Doku-Pflichten und Scope-Hinweisen fuer das Editor-Repository.
@@ -13,6 +15,7 @@
 - Neue Projektmetadatei `VERSION.json` als Quelle der Wahrheit fuer laufende Editor- und Formatversionen.
 
 ### Changed
+- Community- und Beitragsfluss weiter geschaerft: `README.md`, `CONTRIBUTING.md` und `docs/README.md` verweisen jetzt auch auf Code of Conduct und die neuen Open-Source-Grundbausteine des Repositories.
 - Lizenzentscheidung festgezogen: Lucid Editor wird unter der MIT-Lizenz gefuehrt. Das oeffentliche `README.md` erklaert zusaetzlich knapp, dass diese Lizenz den Editor selbst betrifft und nicht automatisch Spiele, Level oder Assets, die mit dem Editor erstellt werden.
 - `docs/README.md` erweitert: Die Doku-Uebersicht verweist jetzt auch auf die neue oeffentliche `README.md` und `CONTRIBUTING.md` auf Repository-Ebene.
 - Lokales Git fuer `Lucid Editor/` initialisiert: Das Editor-Teilprojekt hat jetzt eine eigene Repository-Basis auf Branch `main`, getrennt vom uebergeordneten Sandbox-Ordner.
@@ -28,7 +31,7 @@
 - Playtest-Strategie weiter geschaerft: Ein spaeterer Phaser-basierter Runtime-/Playtest-Adapter bleibt Teil des Editor-Pakets, aber nicht die Basis des Editors selbst.
 - Roadmap bewusst umgestellt: Ein frueher spielbarer Slice mit einfacher Figur und simplem Lauf-/Sprungtest wird jetzt vor der spaeteren Vollausbaustufe des Playtests priorisiert.
 - `AGENTS.md` vollstaendig auf Englisch umgestellt und als verbindlicher Arbeitsleitfaden geschaerft: Expertenrolle fuer Spiele-Software-Entwicklung, Pflicht zur Doku-Orientierung, deutsche Nutzerkommunikation und konsequente Pflege von `CHANGELOG`, `VERSION.json`, Roadmap und Foundations sind jetzt explizit festgelegt.
-- Editorversion auf `0.1.7` angehoben.
+- Editorversion auf `0.1.8` angehoben.
 
 ## 2026-06-30
 

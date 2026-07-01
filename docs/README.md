@@ -23,6 +23,8 @@ Diese Doku ist bewusst aufgeteilt. `BRAINSTORMING.md` bleibt die offene Arbeitsn
   Oeffentliche Projektbeschreibung des Editor-Repositories.
 - `../CONTRIBUTING.md`
   Beitragshinweise und Doku-Pflicht fuer Mitwirkende.
+- `../CODE_OF_CONDUCT.md`
+  Verbindliche Verhaltensregeln fuer die Community rund um das Editor-Repository.
 - `../LICENSE`
   Rechtliche Open-Source-Lizenz des Editor-Repositories.
 - `../VERSION.json`
