@@ -1,0 +1,204 @@
+# Changelog
+
+## 2026-07-01
+
+### Added
+- Neue oeffentliche `README.md` auf Repository-Ebene mit Projektbeschreibung, Zielbild, Tech-Richtung und Einstieg in die Doku.
+- Neue `CONTRIBUTING.md` mit schlanken Beitragsregeln, Doku-Pflichten und Scope-Hinweisen fuer das Editor-Repository.
+- Neue `.gitignore` fuer das lokale `Lucid Editor/`-Repository mit Regeln fuer OS-Dateien, IDE-Metadaten, Node-Abhaengigkeiten, Python-Caches und temporaere Build-Artefakte.
+- Neue `docs/AGENTS.md` als spezialisierte Doku-Leitdatei fuer Dateizwecke, Zustaendigkeiten, Sprachregeln und Pflegeablaeufe innerhalb des `docs/`-Ordners.
+- Neue Umsetzungsdatei `docs/IMPLEMENTATION-ROADMAP.md` als zentrale Status- und Reihenfolgeansicht fuer die eigentliche Editor-Implementierung.
+- Neue Technologieuebersicht `docs/TECH-STACK.md` fuer Browserbasis, Dateizugriff, externe Tools und Bibliotheksstrategie.
+- Neue Projektmetadatei `VERSION.json` als Quelle der Wahrheit fuer laufende Editor- und Formatversionen.
+
+### Changed
+- `docs/README.md` erweitert: Die Doku-Uebersicht verweist jetzt auch auf die neue oeffentliche `README.md` und `CONTRIBUTING.md` auf Repository-Ebene.
+- Lokales Git fuer `Lucid Editor/` initialisiert: Das Editor-Teilprojekt hat jetzt eine eigene Repository-Basis auf Branch `main`, getrennt vom uebergeordneten Sandbox-Ordner.
+- Git-Grenze jetzt explizit festgelegt: Die aktive Versionshistorie des Produkts liegt direkt in `Lucid Editor/`; Dateien, Teststaende und externe Hilfstools ausserhalb dieses Ordners gehoeren aktuell nicht zum Editor-Repository.
+- `TECH-STACK.md` und Root-`AGENTS.md` um die klare Repository-Grenze fuer `Lucid Editor/` erweitert, damit Entwickler den Editor nicht versehentlich als Teil des uebergeordneten Sandbox-Ordners behandeln.
+- Doku-Einstieg weiter geschaerft: `docs/README.md` verweist jetzt auch auf `docs/AGENTS.md` und fuehrt die Datei in der empfohlenen Lesereihenfolge.
+- Root-`AGENTS.md` erweitert: Die globale Agent-Regel verweist jetzt explizit auf `docs/AGENTS.md`, wenn Dokumentationsstruktur oder Doku-Pflegeregeln beruehrt werden.
+- Umgang mit bestehendem Code jetzt explizit dokumentiert: `IMPLEMENTATION-ROADMAP.md` und `AGENTS.md` halten fest, dass die bestehende `Lucid Editor/`-Struktur erhalten bleibt, der aktuelle Code aber als ersetzbarer Prototyp gilt und ueberholte Module nach erfolgreichem Ersatz entfernt werden sollen, statt Dateileichen oder konkurrierende Zweitsysteme mitzuschleppen.
+- Dokumentationsstruktur fuer das Entwicklerteam weiter geschaerft: `README`, `PLAN` und `AGENTS` erklaeren jetzt klarer, welche Datei fuer Vision, Status, Changelog, Foundations und Versionsstand zustaendig ist.
+- Architektur- und Implementierungsrichtung weiter konkretisiert: Browserbasierter V1-Editor bleibt die Basis, waehrend `File System Access API` nur als spaetere optionale Komfortschicht gedacht wird.
+- Technologieentscheidungen weiter geschaerft: `Lucide` ist als Iconset vorgesehen, `Ajv` fuer Schema-Validierung, `SortableJS` fuer DOM-basiertes Reordering, waehrend ein grosses Design-Framework bewusst vermieden wird.
+- UI-Richtung weiter praezisiert: Wiederverwendbare UI-Bausteine, klare CSS-Variablen und ein eigenes kleines Designsystem sind jetzt als feste Leitlinie verankert.
+- Playtest-Strategie weiter geschaerft: Ein spaeterer Phaser-basierter Runtime-/Playtest-Adapter bleibt Teil des Editor-Pakets, aber nicht die Basis des Editors selbst.
+- Roadmap bewusst umgestellt: Ein frueher spielbarer Slice mit einfacher Figur und simplem Lauf-/Sprungtest wird jetzt vor der spaeteren Vollausbaustufe des Playtests priorisiert.
+- `AGENTS.md` vollstaendig auf Englisch umgestellt und als verbindlicher Arbeitsleitfaden geschaerft: Expertenrolle fuer Spiele-Software-Entwicklung, Pflicht zur Doku-Orientierung, deutsche Nutzerkommunikation und konsequente Pflege von `CHANGELOG`, `VERSION.json`, Roadmap und Foundations sind jetzt explizit festgelegt.
+- Editorversion auf `0.1.6` angehoben.
+
+## 2026-06-30
+
+### Added
+- Neues Teilprojekt `Lucid Editor/` als sauberer Neustart neben dem alten Editor.
+- Modulare Ordnerstruktur mit `config`, `model`, `views`, `controllers`, `services`, `assets/styles` und `docs`.
+- Editor-spezifisches `Lucid Editor/AGENTS.md` mit Architektur-, Doku- und Performance-Leitplanken.
+- Neuer HTML-Startpunkt mit getrennter CSS- und JavaScript-Struktur.
+- Erste MVC-nahe Aufteilung fuer Editorzustand, Panels, Canvas und Persistenz.
+- Kollabierbare Inspector-Sektionen fuer Auswahl, Library, Projekt und Planung.
+- Erste Library mit grafischen, technischen und gameplay-orientierten Startobjekten.
+- Canvas-Grundrenderer mit Ebenen, Parallax, Kamera-Zoom und Instanzauswahl.
+- JSON-Speichern und JSON-Laden fuer Projektzustand.
+- Planungsdokument `docs/PLAN.md`.
+- Brainstorming-Dokument `docs/BRAINSTORMING.md` als Arbeitsbasis fuer Architektur, Library, Sprite-Format, Partikel, Save/Load, Git und `AGENTS.md`.
+- Doku-Uebersicht `docs/README.md` und getrennte Foundation-Dateien fuer Library, Graphics, Sprites, Logic und Storage.
+- Foundation-Datei `docs/foundations/project-format.md` fuer `project.json`, Entities, Layer und Editorzustand.
+- Foundation-Datei `docs/foundations/ui-workflow.md` fuer Hauptansichten, Workspaces, Toolbars und UI-Fluss.
+
+### Changed
+- Architekturentscheidung gegen weiteren Ausbau der alten Monolith-Datei und fuer modularen Neustart.
+- UI-Layout von `Lucid Editor` auf einen dunklen, kompakteren Desktop-Look umgestellt, naeher an `level-editor.html` und Photoshop-orientierten Editors.
+- Ebenenpanel, Toolbar, Canvas-Workspace und Inspector visuell verdichtet und von kartenartigem Layout auf flachere Panel-Struktur zurueckgebaut.
+- Performance als explizite Querschnittsanforderung in Planung und Brainstorming verankert, mit Fokus auf grosse Sprites, viele Instanzen und schwaechere Hardware.
+- Dokumentation von einer grossen Sammelstruktur auf thematisch getrennte Foundations umgestellt und die bisherigen Entscheidungen aus dem Planungsdialog dort eingepflegt.
+- Entscheidungen zum `project.json`- und Instanzmodell in eine eigene Foundation ueberfuehrt und damit die feinen Schema-Details aus dem laufenden Dialog dokumentiert.
+- Projektmodell auf Multi-Level-Projekte mit gemeinsamer projektweiter Library ausgerichtet, um Duplikate gleicher Items innerhalb eines Projekts zu vermeiden.
+- Projektformat weiter praezisiert: Levels liegen als eigene Bloecke mit eigenen `layers` und `entities` in `project.json`, zusaetzlich mit explizitem `startLevelId` auf Projektebene.
+- Projektformat fuer Multi-Level-Projekte weiter geschaerft: Levels sind frei sortierbar, waehrend `startLevelId` separat das Standard-Start-Level bestimmt.
+- Level-Modell erweitert: Levels koennen aktiv oder inaktiv sein, ohne aus dem Projekt entfernt zu werden.
+- Level-Modell erweitert: Levels sollen komplett duplizierbar sein, ohne Library-Assets innerhalb des Projekts zu verdoppeln.
+- Level-Loeschregeln festgelegt: Das aktuelle Start-Level darf nur mit Sicherheitsabfrage und anschliessender Neuwahl des Start-Levels entfernt werden.
+- Level-Modell erweitert: Jedes Level kann einen eigenen einfachen Hintergrundwert fuer Editor und spaetere Runtime-Defaults besitzen.
+- Level-Modell erweitert: Jedes Level erhaelt einen allgemeinen `settings`-Block fuer globale Level-Eigenschaften wie spaetere Schwerkraft-, Musik- oder Kamera-Regeln.
+- Projektformat erweitert: `project.json` sieht jetzt zusaetzlich projektweite `projectSettings` fuer gemeinsame Defaults und Exportvorgaben vor.
+- Zusammenspiel festgelegt: `projectSettings` liefern projektweite Defaults, die pro Level in `settings` gezielt ueberschrieben werden duerfen.
+- Level-Metadaten erweitert: Levels koennen eigene Tags fuer Organisation, Filterung und grobe inhaltliche Einordnung erhalten.
+- Level-Metadaten erweitert: Levels duerfen zusaetzlich eine eigene inhaltliche Versionsnummer tragen.
+- Level-Notizen bewusst aus V1 herausgehalten; Planungs- und Kommentarbedarf bleibt vorerst in der externen Dokumentation.
+- Editorfluss fuer Multi-Level-Projekte geschaerft: In V1 ist immer genau ein Level aktiv bearbeitbar, was die Struktur vereinfacht und der Performance hilft.
+- Projektstart weiter praezisiert: Der Editor oeffnet standardmaessig das zuletzt aktive Level, waehrend `startLevelId` weiter fuer Playtest und Runtime gilt.
+- Level-Modell erweitert: Levels sollen bevorzugt automatisch erzeugte Thumbnails/Vorschaubilder fuer bessere Orientierung in der Level-Liste erhalten.
+- Thumbnail-Strategie fuer Levels festgelegt: automatische Vorschau wird bevorzugt um Spawn- oder Startbereich zentriert, mit neutralem Fallback falls dieser noch fehlt.
+- Thumbnail-Aktualisierung festgelegt: automatische Level-Vorschaubilder werden bevorzugt beim Speichern erneuert, nicht live bei jeder Aenderung.
+- Export-Richtung erweitert: Einzelne Levels sollen separat exportierbar sein, ohne immer das komplette Projekt durch die Pipeline zu schicken.
+- Einzel-Level-Export weiter geschaerft: Export soll bevorzugt nur die im jeweiligen Level tatsaechlich verwendeten Library-Items mitnehmen oder referenzieren.
+- Exportlogik weiter praezisiert: Einzellevel-Exporte sollen projektweite Defaults bereits zu wirksamen finalen Levelwerten aufloesen.
+- Editor-Workflow erweitert: Ein einzelnes aktives Level soll direkt aus dem Editor heraus isoliert playtestbar sein.
+- Playtest-Startregel festgelegt: Direkter Editor-Playtest startet standardmaessig beim aktuell aktiven Level statt beim projektweiten `startLevelId`.
+- Playtest-Workflow weiter geschaerft: Direkter Editor-Playtest verwendet den aktuellen ungespeicherten Arbeitsstand des aktiven Levels.
+- Runtime-Abgrenzung festgelegt: Der direkte Playtest darf keine Aenderungen in den eigentlichen Projektzustand zurueckschreiben.
+- Playtest-Debugging festgelegt: Temporare Debug-Overlays sind erlaubt, muessen aber waehrend des Playtests ein- und ausblendbar bleiben.
+- Playtest-Start weiter festgelegt: Direkter Editor-Playtest beginnt in V1 am regulaeren Spawn des aktiven Levels, nicht an freien Ad-hoc-Testpositionen.
+- Playtest-Verhalten weiter ausgebaut: Checkpoints sollen im direkten Editor-Playtest bereits wirksam sein und Respawns steuern.
+- Playtest-Workflow erweitert: Playtest soll pausierbar sein und einen sauberen Rueckweg in den Editor ohne kompletten Neustart bieten.
+- Playtest-Darstellung festgelegt: Direkter Playtest soll in einem klar getrennten Modus laufen, statt den normalen Editorzustand zu vermischen.
+- Playtest-Kameraregel festgelegt: Direkter Editor-Playtest beginnt mit der definierten Level-Startkamera statt mit der zuletzt genutzten Editor-Kamera.
+- Wirkung von inaktiven Levels geschaerft: Inaktive Levels bleiben im Projekt, sind aber standardmaessig nicht fuer direkten Playtest oder Export vorgesehen.
+- Konsistenzregel ergaenzt: `startLevelId` muss immer auf ein aktives Level zeigen und darf nicht auf ein inaktives Level verweisen.
+- Neuer UI- und Workflow-Planungspfad eroeffnet: Mehrere spezialisierte Arbeitsbereiche statt eines einzelnen monolithischen Editorbildschirms werden jetzt als eigener Grundpfeiler dokumentiert.
+- V1-Workspace-Schnitt fuer UI und Workflow festgelegt: echte Hauptansichten sind zunaechst nur Projektansicht und Level-Editor, waehrend die Library als Editor-Panel startet und der Sprite-Editor vorerst als sichtbarer Platzhalter vorbereitet wird.
+- Globale Navigationsrichtung fuer V1 festgelegt: linke vertikale Hauptnavigation mit Icons und Labels, die fuer kompakteres Arbeiten einklappbar sein muss.
+- Verantwortlichkeiten zwischen Projektansicht und Level-Editor getrennt: Projektansicht dient in V1 primaer der Uebersicht, Level-Organisation und projektweiten Aktionen, waehrend levelspezifische Eigenschaften bewusst in den Level-Editor gehoeren.
+- Darstellung der Projektansicht fuer V1 festgelegt: Level werden dort primaer als feste visuelle Kachelansicht mit Thumbnails gezeigt, nicht als reine Listen- oder Detailmaske.
+- Interaktion in der Projektansicht weiter geschaerft: Die Reihenfolge der Level soll in V1 direkt per Drag and Drop auf den Thumbnail-Kacheln veraendert werden.
+- Auswahlverhalten der Projektansicht festgelegt: Ein einfacher Klick auf eine Level-Kachel waehlt das Level nur aus und oeffnet den Level-Editor noch nicht sofort.
+- Oeffnungsworkflow der Projektansicht festgelegt: Ein Level wird in V1 per Doppelklick auf seine Kachel im Level-Editor geoeffnet.
+- Uebergreifendes UI-Prinzip festgelegt: Die rechte Sidebar soll als konsistentes Kontext- und Organisationspanel ueber mehrere Hauptbereiche hinweg wiederkehren, auch in der Project View.
+- UI-Grundschale weiter geschaerft: links globale Navigation, oben bereichsbezogene Toolbar, Mitte Arbeitsflaeche, rechts Kontext-Sidebar und unten kompakte Statusleiste als uebergreifendes Shell-Konzept.
+- Trennung der Level-Eigenschaften praezisiert: Die Project View darf organisatorische Level-Metadaten bearbeiten, waehrend tiefe editorische Level-Eigenschaften bewusst im Level-Editor bleiben.
+- Rechte Sidebar der Project View fuer V1 festgelegt: zwei aufklappbare Hauptbereiche `Project` und `Selected Level` statt einer groesseren oder tablastigen Struktur.
+- Project-View-Workflow weiter geschaerft: obere Toolbar bleibt in V1 projektfokussiert, `Neues Level` erscheint als eigene erste Kachel mit Modal fuer leeres Level oder Duplikat, und schnelle Organisationsaktionen wie Loeschen oder Start-Level-Setzen sollen direkt an Level-Kacheln sowie zusaetzlich in der rechten Sidebar verfuegbar sein.
+- Darstellung der Project View weiter verfeinert: Kachelaktionen werden nur bei Hover oder Auswahl sichtbar, und die obere Toolbar wird bewusst als iconbasierte Werkzeugleiste statt als Textbutton-Reihe geplant.
+- Level-Editor-Toolbar fuer V1 geschnitten: Die obere Leiste bleibt zunaechst eine schlanke iconbasierte Kernwerkzeugleiste statt frueh mit Ansichts-, Snap- oder Exportfunktionen ueberladen zu werden.
+- Werkzeuganordnung im Level-Editor festgelegt: Die iconbasierte Kernwerkzeugleiste sitzt in V1 als kompakte Gruppe links in der oberen Toolbar.
+- Werkzeugsemantik im Level-Editor geschaerft: `Pan` und `Move` bleiben getrennt, ein eigenes `Place`-Werkzeug wird fuer V1 nicht als Kernwerkzeug gefuehrt, und primitive technische Zonen werden geometry-first ueber `Rectangle` oder `Polygon` erzeugt und erst danach typisiert.
+- Werkzeuglogik weiter praezisiert: `Markieren` und `Verschieben` bleiben in V1 bewusst getrennte Werkzeuge und werden nicht zu einem impliziten Kombimodus vermischt.
+- Pan-Navigation weiter geschaerft: `Pan` kann in V1 ueber das aktive Werkzeug, temporaer per `Space` sowie direkt per Maus-Mitteltaste ausgelost werden.
+- Zoom-Navigation festgelegt: Zoom wird in V1 ueber ein Lupen-Werkzeug, `Ctrl` + Mausrad sowie `Ctrl` + `Plus` oder `Minus` ausgeloest; das Zoom-Werkzeug zoomt per horizontalem Drag links hinein und rechts hinaus.
+- Zoom-Reset weiter festgelegt: Doppelklick auf das Lupen-Werkzeug sowie `Ctrl` + `0` setzen den Zoom in V1 auf `100%` zurueck; `Fit to Level` bleibt vorerst bewusst aussen vor.
+- Zoom-Zentrum festgelegt: Die Kamera zoomt in V1 standardmaessig auf die aktuelle Mausposition.
+- Zoomcharakter festgelegt: Der Kamerazoom arbeitet in V1 stufenlos statt ueber feste Zoomstufen.
+- Kamerarahmen im Editor festgelegt: Die Editorkamera orientiert sich in V1 an den Level-Bounds, behaelt aber einen kleinen Overscroll-Rand ausserhalb des eigentlichen Levels.
+- Wiedereinstieg in Levels festgelegt: Die Editorkamera kehrt in V1 beim Oeffnen eines Levels zur zuletzt genutzten Arbeitsansicht dieses Levels zurueck und bleibt damit getrennt von der Level-Startkamera des Playtests.
+- Fokus-Navigation bewusst klein gehalten: Eine direkte Kamera-Zentrierung auf die aktuelle Auswahl ist in V1 noch nicht Teil des Kern-Workflows.
+- Visuelle Canvas-Orientierung weiter festgelegt: Der eigentliche Levelbereich und der kleine Aussenraum sollen in V1 subtil, aber erkennbar voneinander getrennt sein.
+- Levelrahmen weiter praezisiert: Die `Level Bounds` bleiben in V1 zusaetzlich als subtile sichtbare Linie oder Einfassung direkt auf der Canvas erkennbar.
+- Bounds-Bearbeitung auf der Canvas bewusst klein gehalten: Der sichtbare Levelrahmen bleibt in V1 statisch und bekommt noch keine direkten Resize-Griffe; Bounds-Aenderungen laufen weiter ueber `Level Settings`.
+- Canvas-Grid als Orientierungshilfe festgelegt: Die Canvas zeigt in V1 zusaetzlich ein subtil sichtbares Grid, das zunaechst nur der Orientierung dient und noch nicht automatisch mit Snapping gekoppelt ist.
+- Grid-Struktur weiter praezisiert: Das sichtbare Raster arbeitet in V1 mit Haupt- und Nebenraster, damit sowohl feine Platzierung als auch grobe Levelorientierung auf der Canvas lesbar bleiben.
+- Grid-Farblogik festgelegt: Das Raster bleibt in V1 farblich bewusst neutral statt sich dynamisch an den Level-Hintergrund anzupassen.
+- Grid-Verhalten beim Zoom weiter praezisiert: Bei starkem Herauszoomen duennt das Raster adaptiv aus, sodass feine Linien zuruecktreten und die groben Hauptlinien die Orientierung uebernehmen.
+- Gameplay-relevante Orientierungspunkte weiter festgelegt: `Spawn` und `Checkpoint` bleiben in V1 auf der Canvas zusaetzlich ueber kleine klare Editor-Marker sichtbar und muessen nicht erst ausgewaehlt werden.
+- Marker-Lesbarkeit weiter verbessert: `Spawn` und `Checkpoint`-Marker tragen in V1 zusaetzlich kurze Labels wie `Spawn` oder `CP1`, damit mehrere Respawn-Punkte schneller auseinandergehalten werden koennen.
+- Technische Levelzonen weiter sichtbar gemacht: `solid`, `hazard`, `ladder` und `one-way` bleiben in V1 auf der Canvas dauerhaft leicht eingefaerbt und muessen nicht erst ueber Auswahl oder Overlays sichtbar gemacht werden.
+- Visuelle Staerke technischer Zonen festgelegt: Die Einfaerbung dieser Flaechen bleibt in V1 mittelstark transparent, damit sie gut lesbar ist, ohne den eigentlichen Levelinhalt zu ueberdecken.
+- Formbearbeitung technischer Zonen festgelegt: Bereits gezeichnete `Rectangle`- und `Polygon`-Zonen bleiben in V1 direkt auf der Canvas bearbeitbar, statt fuer Formaenderungen auf Neuzeichnen oder reine Eigenschaftsfelder angewiesen zu sein.
+- Einstieg in die Formbearbeitung festgelegt: Bei ausgewaehlten `Rectangle`- und `Polygon`-Zonen erscheinen die Bearbeitungsgriffe in V1 direkt ueber die normale Auswahl, ohne separates Bearbeiten-Werkzeug oder Doppelklick-Modus.
+- Polygon-Bearbeitung fuer V1 bewusst klein gehalten: Bestehende Punkte duerfen verschoben werden, aber das Hinzufuegen und Loeschen von Polygonpunkten bleibt vorerst ausserhalb des Kernumfangs.
+- Werkzeugtrennung bei Formen weiter geschaerft: Im Werkzeug `Markieren` duerfen ausgewaehlte Formen nicht als Ganzes per Flaechen-Drag bewegt werden; fuer das Verschieben kompletter Formen bleibt in V1 bewusst das Werkzeug `Verschieben` zustaendig.
+- Grundverhalten von `Verschieben` festgelegt: Objektbewegung erfolgt in V1 primaer per direktem Draggen auf der Canvas.
+- Bewegungsmodus weiter praezisiert: `Verschieben` arbeitet in V1 zunaechst frei ohne Grid- oder Snap-Zwang.
+- Mehrfachverschiebung festgelegt: Das Werkzeug `Verschieben` darf in V1 auch komplette Mehrfachauswahlen gemeinsam bewegen und ist damit nicht auf Einzelobjekte oder bestimmte Typen beschraenkt.
+- Umgang mit gesperrten Objekten bei Mehrfachauswahl festgelegt: Gesperrte Objekte duerfen in V1 gar nicht erst Teil einer Mehrfachauswahl werden, wodurch `Verschieben` keine gemischten Auswahlsonderfaelle behandeln muss.
+- Objektduplizierung fuer V1 bewusst klein gehalten: Direktes Duplizieren bereits ausgewaehlter Inhalte auf der Canvas gehoert noch nicht zum Kernworkflow und wird vorerst nicht als unmittelbare Editoraktion vorausgesetzt.
+- Objektloeschung fuer V1 festgelegt: Bereits ausgewaehlte Objekte und Formen sollen direkt aus dem Canvas-Workflow heraus loeschbar bleiben und nicht nur ueber Sidebar-Umwege entfernt werden.
+- Loeschinteraktion weiter praezisiert: Das normale Loeschen ausgewaehlter Inhalte erfolgt in V1 ohne zusaetzliche Sicherheitsabfrage.
+- Naechster Vertiefungsblock umgestellt: Nach Canvas-Navigation und Formbearbeitung wird die weitere UI-Planung jetzt bewusst auf den sichtbaren Rahmen und Workflow des getrennten Playtest-Modus fokussiert.
+- Playtest-UI fuer V1 strukturell geschaerft: Der getrennte Playtest wird als gemeinsamer Moduskern mit zwei Darstellungen gedacht, naemlich In-Editor-Playtest und zusaetzlichem Vollbildmodus auf derselben Basis.
+- Playtest-Interaktion weiter praezisiert: Waehrend des Playtests verschwinden normale Editor-Bars und Sidebars weitgehend, waehrend eine mausbasierte Viewport-Inspektion fuer Pan und Zoom als Debug-/Beobachtungshilfe erhalten bleibt.
+- Playtest-Mausinspektion weiter festgelegt: Diese Viewport-Inspektion bleibt in V1 direkt verfuegbar; `Zoom` bleibt unmittelbar nutzbar, waehrend `Pan` im Playtest bewusst nur ueber das gedrueckte Mausrad erfolgt.
+- Vollbild-Startpfad festgelegt: Der Vollbild-Playtest wird in V1 nicht direkt aus dem normalen Editor gestartet, sondern nur als Umschaltung aus einem bereits laufenden In-Editor-Playtest heraus.
+- Playtest-Chrome weiter reduziert: Der In-Editor-Playtest behaelt in V1 nur eine kleine obere Leiste mit `Zurueck` und `Vollbild`.
+- Playtest-Sichtfunktionen fuer V1 weiter eingegrenzt: Sichtbare Aktionen wie `Pause` oder `Debug` gehoeren noch nicht zur Kernoberflaeche und bleiben spaetere Ausbaupunkte.
+- Trefferlogik beim Auswaehlen festgelegt: Bei ueberlappenden Objekten gewinnt in V1 zunaechst das oberste getroffene Objekt.
+- Naechster UI-Vertiefungsblock festgelegt: Nach Auswahl, Verschieben und Layerlogik wird als naechstes gezielt `Pan` und Canvas-Navigation weiter ausgearbeitet.
+- Richtungsentscheidung fuer `logic` nachgezogen: Primitive technische Levelobjekte werden in V1 nicht primaer als Library-Items gedacht, waehrend die `logic`-Library auf spaetere wiederverwendbare Presets und technische Prefabs ausgerichtet wird.
+- Geometriewerkzeuge in der Toolbar praezisiert: `Rectangle` und `Polygon` werden in V1 als zwei direkte Icons statt als Sammelwerkzeug mit Unterauswahl gefuehrt.
+- Rechte Sidebar des Level-Editors weiter geschaerft: Der generische Bereich `Eigenschaften` wird nach neu gezeichneter Geometrie direkt fokussiert, zeigt gemeinsame und typspezifische Objektwerte und verwendet `solid` als vorausgewaehlten Standardtyp fuer neue technische Geometrie.
+- Sidebar-Schnitt im Level-Editor weiter geklaert: Bei leerer Auswahl bleibt `Eigenschaften` objektspezifisch, waehrend ein separater Bereich `Level` die Level-bezogene Konfiguration aufnimmt.
+- Seitenaufteilung des Level-Editors weiter festgelegt: links bleibt `Layers`, waehrend rechts eine gemeinsame Sidebar mit `Library`, `Level`, `Eigenschaften` und einem zusaetzlichen `Info`-Bereich fuer lesenden Objektkontext vorgesehen ist.
+- Layer-Bereich des Level-Editors weiter konkretisiert: `Layers` erhaelt direkte iconbasierte Schnellaktionen fuer `Neu` und `Loeschen`, waehrend einzelne Layer eigene Icons fuer `sichtbar` und `gesperrt` tragen.
+- Layer-Organisation weiter geschaerft: Die Reihenfolge der Layer wird in V1 direkt per Drag and Drop in der linken Layerliste veraendert.
+- Klickverhalten der Layerliste festgelegt: Ein einfacher Klick setzt in V1 nur den aktiven Layer und fuehrt nicht zu einer automatischen Auswahl aller Layer-Objekte.
+- Darstellung des aktiven Layers festgelegt: Der aktive Layer wird in V1 nur direkt in der Layerliste visuell hervorgehoben und nicht zusaetzlich oberhalb separat gespiegelt.
+- Einfuegelogik fuer neue Layer festgelegt: Neue Layer werden in V1 standardmaessig am Ende der Layerliste angelegt.
+- Sicherheitsregel fuer Layer-Loeschung festgelegt: Das Entfernen eines Layers erfolgt in V1 nur nach expliziter Bestaetigung.
+- Layer-Statusverhalten festgelegt: `sichtbar` und `gesperrt` werden in V1 direkt und ohne zusaetzliche Bestaetigung umgeschaltet.
+- Arbeitslogik fuer gesperrte Layer festgelegt: Ein gesperrter Layer darf in V1 weiterhin als aktuelle Arbeitsebene dienen, auch wenn seine Inhalte selbst nicht bearbeitbar und nicht auswaehlbar bleiben.
+- Arbeitslogik fuer ausgeblendete Layer festgelegt: Unsichtbare Layer koennen in V1 nicht als aktuelle Arbeitsebene dienen.
+- Verhalten beim Ausblenden des aktiven Layers festgelegt: Es erfolgt in V1 kein automatischer Wechsel auf einen anderen Layer; eine neue sichtbare Arbeitsebene muss bewusst gewaehlt werden.
+- Platzierungsregeln fuer Layer weiter geschaerft: Neue Objekte und neue Geometrie duerfen nur auf sichtbare und entsperrte Layer eingefuegt werden; Drag and Drop und Toolbar-Werkzeuge zeigen sonst ein Verbots-Symbol, waehrend Library-Doppelklick in diesem Fall eine Modal-Nachricht ausgibt.
+- Blockierte Platzierung weiter verfeinert: Zusaetzlich zum Verbots-Symbol soll ein kurzer Statushinweis in der unteren Leiste den konkreten Grund wie `Aktiver Layer ist gesperrt` oder `Kein sichtbarer Ziel-Layer` anzeigen.
+- Nutzung der unteren Statusleiste festgelegt: Die Leiste bleibt in V1 bewusst schlank und dient primaer kurzen Statusmeldungen, kontextuellen Hinweisen und Rueckmeldungen zu ungueltigen Aktionen.
+- Statusleiste weiter praezisiert: Der aktuelle Zoomwert darf in V1 als kleine dauerhafte Prozentanzeige sichtbar sein, obwohl die Leiste insgesamt bewusst schlank bleibt.
+- Iconbasierte obere Toolbars weiter verfeinert: Werkzeuge und Aktionen sollen in V1 bei Hover kurze Text-Tooltips anzeigen.
+- Tooltip-Inhalt praezisiert: Die Hover-Hinweise der iconbasierten Toolbars enthalten in V1 neben dem Namen auch einen kurzen erklaerenden Einzeiler.
+- Tooltip-System weiter verfeinert: Vorhandene Tastaturkuerzel sollen in V1 zusaetzlich direkt im Tooltip eines Werkzeugs oder einer Aktion angezeigt werden.
+- Standard-Shortcuts fuer Kernwerkzeuge festgelegt: `M` fuer `Markieren`, `V` fuer `Verschieben`, `H` fuer `Pan`, `R` fuer `Rectangle` und `P` fuer `Polygon`.
+- Undo/Redo als Kernworkflow festgelegt: Der Editor muss in V1 grundlegende Bearbeitungsschritte rueckgaengig und wiederherstellbar machen; dafuer werden `Ctrl+Z` und `Ctrl+Y` als Standard-Shortcuts sowie zwei eigene Toolbar-Buttons im Level-Editor vorgesehen.
+- Undo-Umfang weiter geschaerft: `Undo/Redo` bezieht sich in V1 nur auf echte Inhaltsaenderungen wie Platzieren, Loeschen, Verschieben, Formaenderungen und Eigenschaftsaenderungen, nicht auf reine UI-Zustaende wie Werkzeug- oder Panelwechsel.
+- Undo-Inhalt weiter erweitert: Auch Aenderungen an den `Level Settings` gehoeren in V1 bewusst in denselben Undo/Redo-Bereich.
+- Undo-History weiter geschaerft: Die Bearbeitungshistorie bleibt in V1 level-lokal und wird nicht projektweit ueber mehrere Levels zusammengezogen.
+- Undo-Verhalten beim Testen festgelegt: Der Wechsel in den getrennten Playtest-Modus erzeugt in V1 keinen eigenen Undo-Schritt und laesst die bestehende Level-History unangetastet.
+- Playtest-Shortcut fuer den browserbasierten Editor festgelegt: `Ctrl+Enter` startet in V1 den direkten Playtest.
+- Allgemeiner Ruecksetz-Shortcut festgelegt: `Esc` bringt den Level-Editor in V1 aus Zeichen-, Werkzeug- oder Overlay-Zustaenden zurueck in einen neutraleren Zustand.
+- `Esc` weiter konkretisiert: Der Shortcut hebt in V1 zusaetzlich auch bestehende Auswahlen auf und staerkt damit den neutralen Editorzustand.
+- Auswirkung von `Esc` auf die rechte Sidebar nachgezogen: Beim Aufheben der Auswahl verschwinden in V1 auch die auswahlgebundenen Bereiche `Info` und `Eigenschaften` wieder direkt.
+- Rechte Sidebar des Level-Editors weiter praezisiert: `Library`, `Level`, `Eigenschaften` und `Info` werden in V1 als klappbare Sektionen innerhalb einer gemeinsamen Sidebar gefuehrt und nicht ueber Tabs umgeschaltet.
+- Rechte Sidebar des Level-Editors weiter verfeinert: Reihenfolge jetzt `Info`, `Eigenschaften`, `Library`, `Level Settings`, wobei `Info` und `Eigenschaften` nur bei Bedarf eingeblendet werden, waehrend `Library` und `Level Settings` permanent sichtbar bleiben.
+- `Level Settings` im Level-Editor weiter geschaerft: Die Sektion dient in V1 nicht nur als Uebersicht, sondern als direkt voll editierbarer Bereich fuer Level-Metadaten, Bounds, Kamera und zentrale Level-Settings.
+- `Level Settings` weiter verfeinert: Die Sektion wird in V1 intern nochmals in klappbare Untergruppen wie `Meta`, `Bounds`, `Camera`, `Background` und `Settings` gegliedert.
+- Startzustand innerhalb von `Level Settings` festgelegt: `Meta` startet aufgeklappt, waehrend die weiteren Untergruppen in V1 initial eingeklappt bleiben.
+- Entstehung von Mehrfachauswahl festgelegt: In V1 wird Mehrfachauswahl bewusst zunaechst nur ueber `Shift`-Klick auf weitere Objekte aufgebaut.
+- Mehrfachauswahl weiter geschaerft: `Shift`-Klick arbeitet in V1 als Toggle und kann Objekte sowohl hinzufuegen als auch wieder aus der Auswahl entfernen.
+- Sichtbarkeitslogik fuer Auswahl weiter geschaerft: Unsichtbare Objekte koennen in V1 nicht normal selektiert werden.
+- Sperrlogik fuer Auswahl weiter geschaerft: Gesperrte Objekte koennen in V1 bereits einzeln nicht normal selektiert werden.
+- Mehrfachauswahl weiter eingeschraenkt: Gesperrte Objekte koennen in V1 nicht in eine Mehrfachauswahl aufgenommen werden.
+- Standard-Klickverhalten bei Mehrfachauswahl nachgezogen: Ein normaler Klick setzt die Auswahl in V1 wieder auf genau ein Objekt zurueck.
+- Verhalten bei Mehrfachauswahl festgelegt: `Info` zeigt in V1 nur eine kompakte Sammelinfo wie `15 Elemente markiert`, waehrend keine tiefen objektspezifischen Einzelfelder fuer Mehrfachauswahl angezeigt werden.
+- `Eigenschaften` bei Mehrfachauswahl weiter konkretisiert: Statt Einzelfeldern erscheint in V1 ein knapper Hinweis, dass diese Auswahlform dort noch nicht bearbeitet wird.
+- `Info` bei Einzelauswahl weiter definiert: Die Sektion bleibt in V1 kompakt und zeigt Typ, ID, Ebene, Position, sinnvolle Groessen-/Bounds-Angaben und knappe Kontextinformationen.
+- `Info` visuell weiter verfeinert: Kleine Status-Badges wie `locked`, `hidden`, `graphic`, `sprite` oder `logic` duerfen die lesende Objektinfo in V1 ergaenzen.
+- Startverhalten der rechten Sidebar festgelegt: Alle sichtbaren Sektionen des Level-Editors starten in V1 standardmaessig eingeklappt.
+- Verhalten der Library-Sektion festgelegt: Beim Platzieren von Objekten im Level-Editor bleibt die `Library` in V1 bewusst offen, damit Mehrfachplatzierung ohne staendiges Aufklappen moeglich bleibt.
+- Library-Interaktion im Level-Editor weiter geschaerft: Drag and Drop platziert direkt, Einfachklick waehlt ein Library-Item fuer zusaetzlichen Bearbeitungskontext aus, und Doppelklick platziert das Item zentriert im aktuell sichtbaren Kameraausschnitt.
+- Library-Darstellung im Level-Editor weiter konkretisiert: Items bleiben als kompakte Liste innerhalb der `Library`-Sektion, lassen sich per Einfachklick einzeln aufklappen und direkt dort bearbeiten, ohne zusaetzliche eigene Sidebar-Sektion fuer Library-Details.
+- Library-Akkordeon weiter festgelegt: In V1 darf innerhalb der `Library` immer nur ein Item gleichzeitig aufgeklappt sein.
+- Library-Section im Level-Editor weiter verfeinert: Die Section bekommt einen eigenen internen Scrollbereich mit begrenzter Hoehe, waehrend das Suchfeld innerhalb der Section oben dauerhaft sichtbar bleibt und nicht die gesamte rechte Sidebar scrollt.
+- Hoehenregel der Library-Section konkretisiert: Fuer V1 wird die maximale Hoehe der intern scrollenden Library im Level-Editor auf etwa `50vh` festgehalten.
+- Inspector-Grundschnitt geschaerft: `Eigenschaften` folgt in V1 einem gemeinsamen Grundblock mit typspezifischen Zusatzgruppen, waehrend die genaue Feldtiefe pragmatisch erst in der Implementierung verfeinert wird.
+
+### Notes
+- Der neue Editor ist bewusst noch ein Startpunkt und noch keine vollstaendige Migration aller bisherigen Funktionen.
+- Die alte Datei `level-editor.html` bleibt als Referenz fuer die schrittweise Uebernahme bestehen.

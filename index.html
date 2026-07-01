@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lucid Editor</title>
+  <link rel="stylesheet" href="./assets/styles/main.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="panel panel-left">
+      <h3>Ebenen</h3>
+      <div class="panel-body" id="layersPanel"></div>
+    </aside>
+
+    <main class="workspace center">
+      <canvas id="editorCanvas"></canvas>
+      <div class="workspace-chrome" id="chrome">
+        <div class="toolbar-stack">
+          <div class="toolbar">
+            <button class="toolbar-btn" id="placeItemButton">Item platzieren</button>
+            <button class="toolbar-btn" id="saveProjectButton">Speichern</button>
+            <button class="toolbar-btn" id="loadProjectButton">Laden</button>
+            <button class="toolbar-btn" id="resetCameraButton">Kamera zentrieren</button>
+          </div>
+          <div class="status-bar" id="statusBar">Bereit.</div>
+        </div>
+      </div>
+      <div class="canvas-hint">
+        Mausrad: Zoom · Shift + Ziehen oder Mittelklick: Kamera · Doppelklick: ausgewaehltes Library-Item platzieren
+      </div>
+    </main>
+
+    <aside class="panel panel-right">
+      <h3>Eigenschaften</h3>
+      <div class="panel-body" id="inspectorPanel"></div>
+    </aside>
+  </div>
+
+  <input type="file" id="projectFileInput" accept="application/json" hidden />
+
+  <script src="./src/config/constants.js"></script>
+  <script src="./src/utils/common.js"></script>
+  <script src="./src/model/editor-state.js"></script>
+  <script src="./src/services/persistence-service.js"></script>
+  <script src="./src/views/layers-panel.js"></script>
+  <script src="./src/views/inspector-panel.js"></script>
+  <script src="./src/views/canvas-view.js"></script>
+  <script src="./src/controllers/editor-controller.js"></script>
+  <script src="./src/app.js"></script>
+</body>
+</html>
