@@ -275,22 +275,23 @@ select:disabled {
 .checker-stack {
   position: relative;
   flex: 0 0 auto;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 }
 
 .checker-stack .checker-swatch {
   position: absolute;
   box-sizing: border-box;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   padding: 0;
   border: 1px solid #0b1418;
-  border-radius: var(--radius-sm);
+  border-radius: 2px;
   background: none;
   cursor: pointer;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
   z-index: 1;
+  min-height: 18px;
 }
 
 .checker-stack #spriteCheckerA {
