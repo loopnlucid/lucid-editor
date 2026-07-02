@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "version": 1,
+  "type": "sprite",
+  "id": "sprite-hero-anim",
+  "label": "Held (animiert)",
+  "description": "Test-Character mit Idle/Run/Jump aus dem Sprite-Mapper-Material.",
+  "tags": [
+    "spieler",
+    "character",
+    "test"
+  ],
+  "group": "Sprites",
+  "sheet": "assets/sprites/hero/hero.png",
+  "frameWidth": 192,
+  "frameHeight": 192,
+  "pivot": {
+    "x": 0.5,
+    "y": 1
+  },
+  "role": "character",
+  "defaultState": "idle",
+  "animations": {
+    "idle": {
+      "startFrame": 0,
+      "frameCount": 7,
+      "fps": 8,
+      "loop": true
+    },
+    "run": {
+      "startFrame": 7,
+      "frameCount": 8,
+      "fps": 14,
+      "loop": true
+    },
+    "jump": {
+      "startFrame": 15,
+      "frameCount": 8,
+      "fps": 12,
+      "loop": false
+    }
+  },
+  "hitbox": null,
+  "capabilities": [
+    "controllable",
+    "run",
+    "jump"
+  ]
+}

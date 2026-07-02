@@ -1319,3 +1319,12 @@ Die naechsten Entscheidungen sollen unter anderem klaeren:
 - Welche globale Navigation sinnvoll ist
 - Welche Toolbars global und welche kontextbezogen sein sollen
 - Welche Bereiche in V1 bewusst nur vorbereitet, aber noch nicht voll ausgebaut werden
+
+## Wiederverwendbare UI-Komponenten
+
+### Bestaetigungs-Modal
+
+- Kritische Bestaetigungen (z. B. Ebene loeschen, Sheet schliessen, Animation loeschen) laufen ueber ein **gemeinsames grafisches Modal**, nicht ueber das native `window.confirm`.
+- Bereitgestellt als `window.LucidEditor.ui.confirm({ title, message, confirmLabel, cancelLabel, danger })` und liefert ein `Promise<boolean>`.
+- Verhalten: Backdrop-Klick und `Esc` brechen ab, `Enter` bestaetigt; das Modal ist ueberall im Editor wiederverwendbar und einheitlich gestaltet.
+- Ziel ist Konsistenz: neue Bestaetigungs- oder Dialogfluesse nutzen dieselbe Komponente statt eigener Popups.

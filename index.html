@@ -7,42 +7,114 @@
   <link rel="stylesheet" href="./assets/styles/main.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="panel panel-left">
-      <h3>Ebenen</h3>
-      <div class="panel-body" id="layersPanel"></div>
-    </aside>
+  <div class="app-shell" id="appShell">
+    <aside class="main-nav" id="workspaceNav"></aside>
 
-    <main class="workspace center">
-      <canvas id="editorCanvas"></canvas>
-      <div class="workspace-chrome" id="chrome">
-        <div class="toolbar-stack">
-          <div class="toolbar">
-            <button class="toolbar-btn" id="placeItemButton">Item platzieren</button>
-            <button class="toolbar-btn" id="saveProjectButton">Speichern</button>
-            <button class="toolbar-btn" id="loadProjectButton">Laden</button>
-            <button class="toolbar-btn" id="resetCameraButton">Kamera zentrieren</button>
-          </div>
-          <div class="status-bar" id="statusBar">Bereit.</div>
+    <div class="workspace-shell">
+      <header class="top-toolbar" id="topToolbar"></header>
+
+      <div class="workspace-body">
+        <div class="workspace-grid" id="workspaceGrid">
+          <aside class="panel panel-left" id="panelLeft">
+            <div class="panel-head">
+              <button class="icon-button panel-collapse" type="button" id="toggleLeftPanel"></button>
+            </div>
+            <div class="panel-body" id="layersPanel"></div>
+          </aside>
+
+          <main class="editor-stage">
+            <div class="canvas-wrap">
+              <canvas id="editorCanvas"></canvas>
+              <div class="canvas-overlay">
+                <div class="canvas-title" id="canvasTitle"></div>
+                <div class="canvas-hint" id="canvasHint"></div>
+              </div>
+            </div>
+          </main>
+
+          <aside class="panel panel-right" id="panelRight">
+            <div class="panel-head">
+              <button class="icon-button panel-collapse" type="button" id="toggleRightPanel"></button>
+            </div>
+            <div class="panel-body" id="inspectorPanel"></div>
+          </aside>
+        </div>
+
+        <div class="sprite-workspace" id="spriteWorkspace" hidden>
+          <aside class="panel panel-left" id="spritePanelLeft">
+            <div class="panel-head">
+              <button class="icon-button panel-collapse" type="button" id="toggleSpriteLeftPanel"></button>
+            </div>
+            <div class="panel-body">
+              <div class="sidebar-stack">
+                <details class="section" open>
+                  <summary>
+                    <svg class="icon section-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                    <span class="section-title">Animationen</span>
+                    <span class="section-actions">
+                      <button class="icon-button" type="button" id="spriteAddAnim" title="Neue Animation anlegen"></button>
+                    </span>
+                  </summary>
+                  <div class="section-body" id="spriteAnimPanel"></div>
+                </details>
+              </div>
+            </div>
+          </aside>
+
+          <main class="editor-stage sprite-stage" id="spriteStage">
+            <canvas id="spriteCanvas"></canvas>
+            <div class="sprite-overlay" id="spriteOverlay"></div>
+          </main>
+
+          <aside class="panel panel-right" id="spritePanelRight">
+            <div class="panel-head">
+              <button class="icon-button panel-collapse" type="button" id="toggleSpriteRightPanel"></button>
+            </div>
+            <div class="panel-body">
+              <div class="sidebar-stack">
+                <details class="section" open>
+                  <summary>
+                    <svg class="icon section-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                    <span class="section-title">Vorschau</span>
+                  </summary>
+                  <div class="section-body">
+                    <div class="sprite-preview-box">
+                      <canvas id="spritePreviewCanvas"></canvas>
+                      <div class="sprite-preview-empty" id="spritePreviewEmpty">Keine Frames</div>
+                    </div>
+                  </div>
+                </details>
+                <details class="section" open>
+                  <summary>
+                    <svg class="icon section-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                    <span class="section-title">Frames <span class="section-badge" id="spriteFrameCount"></span></span>
+                  </summary>
+                  <div class="section-body">
+                    <div class="frame-list" id="spriteFrameList"></div>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
-      <div class="canvas-hint">
-        Mausrad: Zoom · Shift + Ziehen oder Mittelklick: Kamera · Doppelklick: ausgewaehltes Library-Item platzieren
-      </div>
-    </main>
 
-    <aside class="panel panel-right">
-      <h3>Eigenschaften</h3>
-      <div class="panel-body" id="inspectorPanel"></div>
-    </aside>
+      <footer class="status-bar" id="statusBar"></footer>
+    </div>
   </div>
 
   <input type="file" id="projectFileInput" accept="application/json" hidden />
+  <input type="file" id="spriteSheetInput" accept="image/png,image/*" hidden />
 
   <script src="./src/config/constants.js"></script>
   <script src="./src/utils/common.js"></script>
   <script src="./src/model/editor-state.js"></script>
   <script src="./src/services/persistence-service.js"></script>
+  <script src="./src/services/sprite-service.js"></script>
+  <script src="./src/views/modal-view.js"></script>
+  <script src="./src/views/shell-view.js"></script>
+  <script src="./src/views/sprite-editor-view.js"></script>
+  <script src="./src/views/sprite-canvas-view.js"></script>
   <script src="./src/views/layers-panel.js"></script>
   <script src="./src/views/inspector-panel.js"></script>
   <script src="./src/views/canvas-view.js"></script>

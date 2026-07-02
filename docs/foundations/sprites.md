@@ -20,6 +20,31 @@ Diese Datei beschreibt die aktuell festgelegten V1-Regeln fuer `sprite`-Items un
 - Ein Sprite-Item steht fuer **genau ein Objekt**.
   - Beispiel: ein Character, eine Kiste, eine Lampe, ein Schalter
 - Mehrere verschiedene Objekte in einem einzigen Sprite-Item sind fuer V1 nicht vorgesehen.
+- Alle Animationen eines Sprites liegen in **einem** Sheet mit **einer** einheitlichen Frame-Groesse. Der lineare Frame-Index (`col = index % columns`, `row = index / columns`) ergibt sich aus der Sheet-Breite geteilt durch die Frame-Breite; `columns` muss deshalb nicht separat gespeichert werden.
+
+## Sheet-Erzeugung
+
+- Beim Zusammenfuehren mehrerer Quell-Clips in ein Sprite-Sheet werden alle Frames auf die **gemeinsame** Frame-Groesse gebracht.
+- Das Skalieren erfolgt **pivot-gerecht** (Standard: unten mittig), damit ein Character in allen Animationen dieselbe Standhoehe hat und beim Zustandswechsel nicht springt.
+- Ausgangsmaterial mit unterschiedlichen Aufloesungen pro Clip muss also normalisiert werden, nicht nur mit Rand aufgefuellt.
+
+## Manifest-Beispiel
+
+```json
+{
+  "schemaVersion": 1, "version": 1, "type": "sprite",
+  "id": "hero-001", "label": "Held", "description": "", "tags": [],
+  "sheet": "hero.png", "frameWidth": 192, "frameHeight": 192,
+  "pivot": { "x": 0.5, "y": 1.0 }, "role": "character",
+  "defaultState": "idle",
+  "animations": {
+    "idle": { "startFrame": 0,  "frameCount": 7, "fps": 8,  "loop": true },
+    "run":  { "startFrame": 7,  "frameCount": 8, "fps": 14, "loop": true },
+    "jump": { "startFrame": 15, "frameCount": 8, "fps": 12, "loop": false }
+  },
+  "hitbox": null, "capabilities": []
+}
+```
 
 ## Animationen
 

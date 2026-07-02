@@ -26,6 +26,12 @@ Wichtig:
 - Die projektlokale Library wird ueber eine **explizite projektweite Registry** referenziert.
 - Verwendet- und ungenutzt-Status von Library-Items werden **nicht gespeichert**, sondern aus den Instanzen abgeleitet.
 
+### Wichtige Uebergangsbruecke im aktuellen Browser-Stand
+
+- Solange die manifestbasierte Dateisystem-Library noch nicht aktiv angebunden ist, darf der browserbasierte Save/Load-Zwischenstand die aktuell geladenen Library-Definitionen temporaer **inline im gespeicherten Snapshot** mitfuehren.
+- Diese Brueckenstrategie ersetzt **nicht** das langfristige Ziel eines registry- plus manifestbasierten Projektformats.
+- Sobald der Dateisystem-Flow steht, bleibt die Registry wieder die alleinige projektweite Wahrheit fuer Library-Referenzen innerhalb von `project.json`.
+
 ## Projektweiter Kern
 
 Feine Felder koennen sich spaeter noch erweitern, aber V1 sollte mindestens diese Bereiche tragen:
@@ -310,17 +316,20 @@ Beispiel:
 
 ### Grundsatz
 
-- Eine Entity ist immer eine **Instanz** eines Library-Items.
-- Die fruehere Entscheidung fuer einen gemeinsamen Entity-Kern bleibt bestehen.
+- Entities teilen sich in V1 einen **gemeinsamen Kern**, auch wenn sie aus unterschiedlichen Quellen stammen.
+- Es gibt dabei zwei gaengige Herkunftsarten:
+  - library-basierte Instanzen von `graphic`- oder `sprite`-Items
+  - geometry-first erzeugte primitive `logic`-Objekte direkt im Level
 - Entities werden in V1 **innerhalb ihres jeweiligen Level-Blocks** gespeichert.
-- Library-Definition und Instanz bleiben strikt getrennt.
+- Library-Definition und Instanz bleiben fuer library-basierte Inhalte strikt getrennt.
+- Primitive `logic`-Objekte duerfen in V1 direkt auf Entity-Ebene leben und brauchen dafuer **kein vorgeschaltetes Library-Item**.
 
 ### Gemeinsamer Entity-Kern
 
 Jede Entity besitzt in V1 einen gemeinsamen Kern:
 
 - `id`
-- `libraryItemId`
+- `type`
 - `name`
 - `x`
 - `y`
@@ -329,13 +338,14 @@ Jede Entity besitzt in V1 einen gemeinsamen Kern:
 - `locked`
 - `order`
 - `properties`
+- optional `libraryItemId`
 
 ### Bedeutung
 
 - `id`
   stabile technische Instanz-ID
-- `libraryItemId`
-  Verweis auf das zugrunde liegende Library-Item
+- `type`
+  grober Objektursprung wie `graphic`, `sprite` oder `logic`
 - `name`
   frei bearbeitbarer sichtbarer Name der Instanz
 - `x`, `y`
@@ -350,18 +360,27 @@ Jede Entity besitzt in V1 einen gemeinsamen Kern:
   Reihenfolge innerhalb der Ebene
 - `properties`
   typspezifische Zusatzdaten und Instanz-Overrides
+- `libraryItemId`
+  optionaler Verweis auf das zugrunde liegende Library-Item; fehlt bei geometry-first erzeugten primitiven `logic`-Objekten
 
 ### Instanz-Overrides
 
 - Instanzen duerfen Werte des Library-Items **pro Instanz ueberschreiben**.
 - Diese Abweichungen liegen in `properties`.
 - Damit bleibt das Library-Item die Grunddefinition und die Entity speichert nur ihre instanzbezogenen Unterschiede.
+- Primitive `logic`-Objekte speichern in `properties` dagegen vor allem:
+  - ihren eigentlichen `logic`-Untertyp
+  - ihre Form wie `rect`, `polygon` oder spaeter Marker-/Punktgeometrie
+  - die konkrete Geometrie- oder Sonderdaten dieser Instanz
 
 ### Beispiele fuer `properties`
 
 - Sprite gespiegelt oder nicht
 - One-Way-Richtung
 - Checkpoint-Respawn-Punkt
+- `logicType`
+- `shape`
+- Rechteckgroesse
 - Polygonpunkte
 - spaetere weitere Instanz-Overrides
 

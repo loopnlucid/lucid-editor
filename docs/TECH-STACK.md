@@ -34,8 +34,9 @@ Die erste Version soll ohne schweren Build- oder Framework-Stack auskommen.
 
 ### Direkt vorgesehen
 
-- **Lucide**
+- **Lucide** (im Einsatz)
   - fuer Toolbar-, Panel- und Status-Icons
+  - Die verwendeten Icons liegen als unveraenderte Lucide-SVG-Pfade in `src/utils/common.js` (`ICON_PATHS`) vor; es werden bewusst **keine eigenen Icons** gezeichnet. Fehlt ein passendes Icon, wird eine Auswahl mit dem Team abgestimmt statt selbst gezeichnet.
 - **Ajv**
   - fuer JSON-Schema-Validierung von `project.json`, `manifest.json` und spaeteren Exportdaten
 - **SortableJS**

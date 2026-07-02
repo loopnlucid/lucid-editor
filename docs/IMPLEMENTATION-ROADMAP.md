@@ -34,43 +34,46 @@ Hier steht nicht die komplette Produktvision, sondern:
 - `[x]` Neuer modularer Startpunkt unter `Lucid Editor/`
 - `[x]` MVC-nahe Grundstruktur mit `model`, `views`, `controllers`, `services`, `config`
 - `[x]` Browserbasierter Editor-Prototyp ohne Framework
-- `[x]` Canvas-Grundrenderer mit Kamera, Zoom und einfacher Entity-Auswahl
+- `[x]` UI-Shell entlang des dokumentierten Level-Editor-Schnitts mit linker Workspace-Navigation, oberer Werkzeugleiste, rechter Sidebar und unterer Statusleiste
+- `[x]` Canvas-Grundrenderer mit Kamera, Bounds, Haupt-/Nebenraster, Layern und erster technischer Geometrie
 - `[x]` Linkes Ebenenpanel mit aktivem Layer, Sichtbarkeit und Sperre
-- `[x]` Rechte Inspector-Grundflaeche als frueher Prototyp
-- `[x]` Beispiel-Library im Editorzustand
-- `[x]` Einfaches Platzieren, Verschieben und Loeschen von Instanzen
-- `[x]` Einfaches JSON-Speichern und JSON-Laden
+- `[x]` Rechte Sidebar nach V1-Schnitt mit `Info`, `Eigenschaften`, `Library` und `Level Settings`
+- `[x]` Werkzeugleiste mit `Markieren`, `Verschieben`, `Pan`, `Zoom`, `Rectangle` und `Polygon`
+- `[x]` Beispiel-Library im Editorzustand mit Suche, Auswahldetails und zentrierter Platzierung
+- `[x]` Aktives Multi-Level-nahes Projektmodell im laufenden Code mit `levels`, `startLevelId`, `editorState` und levelbezogenen `bounds`, `cameraStart`, `settings`
+- `[x]` Geometry-first-Erzeugung fuer erste `logic`-Zonen als Rechteck und Polygon mit Default-Typ `solid`
+- `[x]` Einfaches Platzieren, Verschieben, Mehrfachauswahl per `Shift`, Loeschen und erste Eigenschaftenbearbeitung
+- `[x]` `Undo/Redo` fuer Kernaktionen und `Level Settings`
+- `[x]` Browser-Speichern und Laden auf Basis des neuen Projektzustands mit Legacy-Migration des alten Prototypformats
 - `[x]` Ausfuehrliche Foundations fuer Datenmodell, UI-Workflow und Projektformat
 
 ### Noch nicht umgesetzt
 
 - `[ ]` Echte `Project View` als eigener Workspace
-- `[ ]` Mehrlevel-Projektmodell im laufenden Code
-- `[ ]` Rechte Sidebar nach neuem V1-Schnitt mit `Info`, `Eigenschaften`, `Library`, `Level Settings`
-- `[ ]` Werkzeugsystem mit `Markieren`, `Verschieben`, `Pan`, `Rectangle`, `Polygon`, `Zoom`
-- `[ ]` Geometry-first-Erzeugung fuer technische Zonen
-- `[ ]` `Undo/Redo`
 - `[ ]` Getrennter `Playtest`-Modus
 - `[ ]` Manifestbasierte projektweite Library auf Dateisystemebene
-- `[ ]` Projektweite Versions- und Formatpflege im Codefluss
+- `[x]` Direkte Formbearbeitung bestehender Rechtecke und Polygone auf der Canvas
+- `[ ]` Vollstaendige Spawn-/Checkpoint-Regeln inklusive Ersetzungsdialog, Respawn-Punkt und Playtest-Wirksamkeit
+- `[ ]` Finale Registry-plus-Manifest-Persistenz ohne inline gespeicherte Library-Definitionen
+- `[ ]` Projektweite Versions- und Formatpflege im kompletten Dateisystem-Flow
 
 ## Empfohlene Bau-Reihenfolge
 
 ### Phase 1: Prototyp an V1-Grundschnitt angleichen
 
-- `[~]` Bestehende UI-Struktur auf die dokumentierte Shell ausrichten
-- `[~]` Aktuelles Editor-State-Modell schrittweise an das dokumentierte Projekt- und Levelmodell heranfuehren
-- `[ ]` Toolbar-Logik auf echte Werkzeuge statt Einzelbuttons umstellen
-- `[ ]` Inspector in die dokumentierten Sektionen aufteilen
+- `[x]` Bestehende UI-Struktur auf die dokumentierte Shell ausrichten
+- `[x]` Aktuelles Editor-State-Modell auf das dokumentierte Projekt- und Levelmodell anheben
+- `[x]` Toolbar-Logik auf echte Werkzeuge statt Einzelbuttons umstellen
+- `[x]` Inspector in die dokumentierten Sektionen aufteilen
 
 ### Phase 2: Erster wirklich benutzbarer Level Editor
 
-- `[ ]` Werkzeugsystem mit Shortcuts `M`, `V`, `H`, `R`, `P`, `Ctrl+Enter`, `Esc`
-- `[ ]` Normale Auswahl, Mehrfachauswahl per `Shift`, Verschieben, Loeschen
-- `[ ]` `Rectangle` und `Polygon` fuer technische Levelobjekte
-- `[ ]` Typzuweisung und Bearbeitung fuer `solid`, `hazard`, `ladder`, `one-way`, `spawn`, `checkpoint`
-- `[ ]` `Level Settings` fuer Bounds, Kamera, Hintergrund und Meta
-- `[ ]` `Undo/Redo` fuer Inhaltsaenderungen und `Level Settings`
+- `[~]` Werkzeugsystem mit Shortcuts `M`, `V`, `H`, `R`, `P`, `Ctrl+Enter`, `Esc`
+- `[x]` Normale Auswahl, Mehrfachauswahl per `Shift`, Verschieben, Loeschen
+- `[x]` `Rectangle` und `Polygon` fuer technische Levelobjekte
+- `[~]` Typzuweisung und Bearbeitung fuer `solid`, `hazard`, `ladder`, `one-way`, `spawn`, `checkpoint`
+- `[~]` `Level Settings` fuer Bounds, Kamera, Hintergrund und Meta
+- `[x]` `Undo/Redo` fuer Inhaltsaenderungen und `Level Settings`
 
 ### Phase 3: Frueher spielbarer Slice
 
@@ -116,12 +119,11 @@ Hier steht nicht die komplette Produktvision, sondern:
 
 Wenn wir schnell zu einer ersten belastbaren Basis kommen wollen, ist der naechste Block:
 
-1. Toolbar auf echtes Werkzeugmodell umstellen
-2. Rechte Sidebar auf `Info`, `Eigenschaften`, `Library`, `Level Settings` schneiden
-3. `Rectangle` und `Polygon` implementieren
-4. `Undo/Redo` fuer Kernaktionen einfuehren
-5. Einen ersten minimalen spielbaren Slice mit Figur, `spawn` und `solid` vorbereiten
-6. Danach Speichern/Laden auf das dokumentierte Levelmodell heben
+1. Direkte Canvas-Bearbeitung fuer bestehende Rechtecke und Polygone nachziehen
+2. `spawn` und `checkpoint` als vollwertige technische Objekt-Workflows vervollstaendigen
+3. Den ersten minimalen Playtest mit Figur, `spawn` und `solid` wirklich anschliessen
+4. Solide Kollision und einfache Kamera fuer diesen Testlauf integrieren
+5. Browser-Speichern/Laden vom aktuellen Brueckenformat weiter in Richtung finalem `project.json` schieben
 
 ## Pflege-Regel
 

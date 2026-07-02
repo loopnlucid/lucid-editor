@@ -8,24 +8,40 @@
     const savedAt = new Date().toISOString();
 
     return {
+      schemaVersion: PROJECT_SCHEMA_VERSION,
+      version: state.version,
       meta: {
         ...deepClone(state.meta),
-        schemaVersion: PROJECT_SCHEMA_VERSION,
         lastSavedAt: savedAt,
       },
-      layers: deepClone(state.layers),
-      activeLayerId: state.activeLayerId,
-      libraryItems: deepClone(state.libraryItems),
-      selectedLibraryItemId: state.selectedLibraryItemId,
-      selectedEntityId: state.selectedEntityId,
-      entities: deepClone(state.entities),
-      spawn: deepClone(state.spawn),
-      camera: deepClone(state.camera),
-      ui: {
-        openSections: deepClone(state.ui.openSections),
+      projectSettings: deepClone(state.projectSettings),
+      // The browser-only bridge still keeps inline library definitions until the
+      // filesystem-backed manifest registry is implemented.
+      library: deepClone(state.library),
+      startLevelId: state.startLevelId,
+      levels: deepClone(state.levels),
+      editorState: {
+        activeLevelId: state.editorState.activeLevelId,
+        activeLayerId: state.editorState.activeLayerId,
+        navCollapsed: state.editorState.navCollapsed === true,
+        leftPanelCollapsed: state.editorState.leftPanelCollapsed === true,
+        rightPanelCollapsed: state.editorState.rightPanelCollapsed === true,
+        selectedEntityId: state.editorState.selectedEntityIds?.[0] || null,
+        selectedLibraryItemId: state.editorState.selectedLibraryItemId,
+        camera: deepClone(state.editorState.camera),
+        openSections: deepClone(state.editorState.openSections),
       },
-      counters: deepClone(state.counters),
     };
+  }
+
+  function createProjectFilename(projectName) {
+    const safeName = String(projectName || "lucid-editor-project")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+
+    return `${safeName || "lucid-editor-project"}.json`;
   }
 
   function downloadProject(state) {
@@ -36,7 +52,7 @@
     const anchor = document.createElement("a");
 
     anchor.href = url;
-    anchor.download = "lucid-editor-project.json";
+    anchor.download = createProjectFilename(snapshot.meta.projectName);
     anchor.click();
 
     setTimeout(() => URL.revokeObjectURL(url), 0);
