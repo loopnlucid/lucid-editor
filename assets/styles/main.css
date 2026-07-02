@@ -269,23 +269,46 @@ select:disabled {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Zwei kompakte Farbfelder fuer das Transparenz-Schachbrett. */
-.checker-swatches {
-  gap: 3px;
+/* Vorder-/Hintergrundfarbe fuer das Transparenz-Schachbrett: zwei versetzt
+   uebereinanderliegende Quadrate (wie in Bildbearbeitungsprogrammen). Ein Klick
+   holt das jeweilige Quadrat nach vorne (.is-front). */
+.checker-stack {
+  position: relative;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
 }
 
-.checker-swatch {
-  width: 22px;
-  height: 22px;
+.checker-stack .checker-swatch {
+  position: absolute;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
   padding: 0;
-  border: 1px solid var(--line-soft);
+  border: 1px solid #0b1418;
   border-radius: var(--radius-sm);
   background: none;
   cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+  z-index: 1;
+}
+
+.checker-stack #spriteCheckerA {
+  top: 0;
+  left: 0;
+}
+
+.checker-stack #spriteCheckerB {
+  bottom: 0;
+  right: 0;
+}
+
+.checker-stack .checker-swatch.is-front {
+  z-index: 2;
 }
 
 .checker-swatch::-webkit-color-swatch-wrapper {
-  padding: 2px;
+  padding: 0;
 }
 
 .checker-swatch::-webkit-color-swatch {

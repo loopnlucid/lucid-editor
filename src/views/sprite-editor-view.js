@@ -63,8 +63,8 @@
             ${renderIcon("trash")}
           </button>
         </div>
-        <div class="toolbar-group checker-swatches" title="Transparenz-Hintergrund: zwei Farben fuers Schachbrett hinter Sheet und Vorschau">
-          <input type="color" class="checker-swatch" id="spriteCheckerA" value="${escapeHtml(checker.a)}" title="Schachbrett-Farbe 1" />
+        <div class="checker-stack" title="Transparenz-Hintergrund: zwei Farben fuers Schachbrett hinter Sheet und Vorschau">
+          <input type="color" class="checker-swatch is-front" id="spriteCheckerA" value="${escapeHtml(checker.a)}" title="Schachbrett-Farbe 1" />
           <input type="color" class="checker-swatch" id="spriteCheckerB" value="${escapeHtml(checker.b)}" title="Schachbrett-Farbe 2" />
         </div>
         <button class="action-button" type="button" id="spriteCreate" ${canCreate ? "" : "disabled"} title="Sprite erstellen: alle Animationen in ein Sheet packen und als Library-Item speichern">
@@ -106,12 +106,18 @@
     root.querySelector("#spriteCreate")?.addEventListener("click", () => actions.onCreateSprite());
     root.querySelector("#spriteBackToLevel")?.addEventListener("click", () => actions.onSelectWorkspace("level-editor"));
 
-    const emitChecker = () => actions.onCheckerChange?.(
-      root.querySelector("#spriteCheckerA")?.value,
-      root.querySelector("#spriteCheckerB")?.value
-    );
-    root.querySelector("#spriteCheckerA")?.addEventListener("input", emitChecker);
-    root.querySelector("#spriteCheckerB")?.addEventListener("input", emitChecker);
+    const swatchA = root.querySelector("#spriteCheckerA");
+    const swatchB = root.querySelector("#spriteCheckerB");
+    const emitChecker = () => actions.onCheckerChange?.(swatchA?.value, swatchB?.value);
+    // Angeklicktes Quadrat nach vorne holen (wie Vorder-/Hintergrundfarbe).
+    const bringFront = (front) => {
+      swatchA?.classList.toggle("is-front", front === swatchA);
+      swatchB?.classList.toggle("is-front", front === swatchB);
+    };
+    [swatchA, swatchB].forEach((swatch) => {
+      swatch?.addEventListener("pointerdown", () => bringFront(swatch));
+      swatch?.addEventListener("input", emitChecker);
+    });
   }
 
   function renderSpriteOverlay(root, draft) {
